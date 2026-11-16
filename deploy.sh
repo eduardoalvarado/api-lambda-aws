@@ -5,7 +5,19 @@ set -e
 FUNCTION_NAME="dev-tsb-lmb-crud"
 REGION="us-east-2"
 
-echo "Building deployment package..."
+echo "Starting deployment process..."
+
+echo "Cleaning previous build artifacts..."
+rm -f deployment-package.zip
+rm -rf dist
+
+echo "Installing dependecies..."
+npm install
+
+echo "Compiling Typescript and building deployment package..."
+npm run build
+
+echo "Creating deployment ZIP archive (deployment-package.zip)..."
 npm run zip
 
 echo "Deploying to AWS Lambda function: $FUNCTION_NAME"

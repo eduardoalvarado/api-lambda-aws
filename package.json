@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "zip": "zip -r deployment-package.zip index.mjs node_modules"
+    "build": "esbuild src/handler/index.ts --bundle --platform=node --target=node22 --outfile=dist/handler/index.js --sourcemap",
+    "zip": "zip -r deployment-package.zip dist"
   },
   "keywords": [],
   "author": "",
@@ -14,5 +15,10 @@
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.1169.0",
     "@aws-sdk/lib-dynamodb": "^3.1169.0"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.164",
+    "esbuild": "^0.28.2",
+    "typescript": "^7.0.2"
   }
 }
